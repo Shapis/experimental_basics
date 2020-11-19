@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Experimental Basics'),
+        title: Text('Fisica Experimental 1 UFPE'),
         //leading: Icon(Icons.build),
       ),
       body: BottomTabbarExample(),

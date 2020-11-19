@@ -18,7 +18,17 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         home: HomeScreen(),
-        theme: ThemeData(fontFamily: 'SourceSansPro'),
+        theme: ThemeData(
+          fontFamily: 'SourceSansPro',
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.resolveWith((state) => Colors.blue),
+              foregroundColor:
+                  MaterialStateProperty.resolveWith((state) => Colors.white),
+            ),
+          ),
+        ),
       ),
     );
   }

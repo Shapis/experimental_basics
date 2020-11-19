@@ -1,4 +1,7 @@
+import 'package:experimental_basics/brain/standard_deviation_math.dart';
+import 'package:experimental_basics/components/typography.dart';
 import 'package:experimental_basics/provider_data/single_input_data.dart';
+import 'package:experimental_basics/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,13 +9,69 @@ class SingleInputTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<SingleInputData>(builder: (context, singleInputData, ___) {
+      StandardDeviationMath sdMath = StandardDeviationMath(
+          inputs:
+              singleInputData.singleInputEntries.map((e) => e.value).toList(),
+          errors:
+              singleInputData.singleInputEntries.map((e) => e.error).toList());
+
       return Column(
         children: [
           Container(
             height: 100,
-            color: Colors.red,
-            child: Center(child: Text(singleInputData.getSum().toString())),
+            color: Colors.white,
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: ReusableCard(
+                      colour: Colors.blue,
+                      cardChild: Container(
+                        margin: EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Media: ${sdMath.getAverage().toStringAsExponential(sdMath.getAlgarismosSignificativos())}',
+                              style: kResultTextStyle,
+                            ),
+                            Text(
+                              'Desvio Padrao: ${sdMath.getSingleInputStandardDeviation().toStringAsExponential(sdMath.getAlgarismosSignificativos())}',
+                              style: kResultTextStyle,
+                            ),
+                            Text(
+                              'Erro: ${sdMath.getAverageError().toStringAsExponential(sdMath.getAlgarismosSignificativos())}',
+                              style: kResultTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ReusableCard(
+                      colour: Colors.lightBlueAccent,
+                      cardChild: Center(
+                        child: Text(
+                          "Grafico da gaussiana vai vir aqui",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
+          // Container(
+          //   height: 100,
+          //   color: Colors.red,
+          //   child: Center(
+          //       child: Text(
+          //           'Media: ${sdMath.getAverage()}, Desvio Padrao: ${sdMath.getSingleInputStandardDeviation()}, Erro: ')),
+          // ),
           Expanded(
             child: Container(
               child: ListView.builder(
@@ -33,8 +92,8 @@ class SingleInputTab extends StatelessWidget {
                           },
                         ),
                       );
-                      Scaffold.of(context).hideCurrentSnackBar();
-                      Scaffold.of(context).showSnackBar(snackBar);
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                     background: Container(
                       color: Colors.red,

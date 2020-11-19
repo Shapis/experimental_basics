@@ -30,7 +30,8 @@ class SingleInputData extends ChangeNotifier {
   }
 
   void addEntry(double value, double error) {
-    _singleInputEntries.add(
+    _singleInputEntries.insert(
+      0,
       SingleInputEntry(
         value: value,
         error: error,

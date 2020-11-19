@@ -32,7 +32,7 @@ class AddValueScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
-                color: Colors.lightBlueAccent,
+                color: Colors.blue,
               ),
             ),
             Row(
@@ -72,9 +72,8 @@ class AddValueScreen extends StatelessWidget {
             SizedBox(
               height: 5.0,
             ),
-            FlatButton(
+            TextButton(
               child: Text('Add'),
-              color: Colors.lightBlueAccent,
               onPressed: () {
                 switch (tabIndex) {
                   case 0:
