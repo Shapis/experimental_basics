@@ -18,7 +18,7 @@ class StandardDeviationMath {
   double getSingleInputVariance() {
     double singleAverage = getAverage();
     double sd = 0;
-    sd.round();
+    //sd.round(); // Not sure why I added this line initially.
 
     for (var item in inputs) {
       sd += pow(item - singleAverage, 2);

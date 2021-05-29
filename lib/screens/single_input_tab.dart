@@ -18,7 +18,6 @@ class SingleInputTab extends StatelessWidget {
       return Column(
         children: [
           Container(
-            height: 100,
             color: Colors.white,
             child: IntrinsicHeight(
               child: Row(
