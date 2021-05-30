@@ -7,16 +7,16 @@ class StandardDeviationMath {
 
   StandardDeviationMath({@required this.inputs, @required this.errors});
 
-  double getAverage() {
+  String getAverage() {
     double temp = 0;
     for (var item in inputs) {
       temp += item;
     }
-    return temp / inputs.length;
+    return (temp / inputs.length).toStringAsPrecision(getPrecisionDegree());
   }
 
   double getSingleInputVariance() {
-    double singleAverage = getAverage();
+    double singleAverage = double.tryParse(getAverage());
     double sd = 0;
     //sd.round(); // Not sure why I added this line initially.
 
@@ -26,8 +26,9 @@ class StandardDeviationMath {
     return (sd / inputs.length);
   }
 
-  double getSingleInputStandardDeviation() {
-    return sqrt(getSingleInputVariance());
+  String getSingleInputStandardDeviation() {
+    return sqrt(getSingleInputVariance())
+        .toStringAsPrecision(getPrecisionDegree());
   }
 
   double getAverageError() {
@@ -41,8 +42,25 @@ class StandardDeviationMath {
     return double.tryParse((errorSum / errors.length).toStringAsPrecision(1));
   }
 
-  int getAlgarismosSignificativos() {
-    //print(algarismosSignificativos);
-    return 2;
+  int getPrecisionDegree() {
+    int significantFigures;
+    for (var item in errors) {
+      int temp = 0;
+      bool firstSignificantFigureReached = false;
+      for (var i = 0; i < item.toString().length; i++) {
+        if (item.toString()[i] != '0' && item.toString()[i] != '.') {
+          firstSignificantFigureReached = true;
+        }
+        if (firstSignificantFigureReached && item.toString()[i] != '.') {
+          temp++;
+        }
+      }
+      if (significantFigures == null) {
+        significantFigures = temp;
+      } else if (significantFigures > temp) {
+        significantFigures = temp;
+      }
+    }
+    return significantFigures ?? 1;
   }
 }
