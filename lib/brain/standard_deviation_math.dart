@@ -31,15 +31,18 @@ class StandardDeviationMath {
   }
 
   double getAverageError() {
-    double avgError = 0;
+    double errorSum = 0;
 
     for (var item in errors) {
-      avgError += item;
+      errorSum += item;
     }
-    return avgError / errors.length;
+
+    // Returns a double with 1 significant figure.
+    return double.tryParse((errorSum / errors.length).toStringAsPrecision(1));
   }
 
   int getAlgarismosSignificativos() {
+    //print(algarismosSignificativos);
     return 2;
   }
 }

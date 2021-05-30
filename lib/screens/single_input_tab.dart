@@ -33,15 +33,15 @@ class SingleInputTab extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Media: ${sdMath.getAverage().toStringAsExponential(sdMath.getAlgarismosSignificativos())}',
+                              'Media: ${sdMath.getAverage().toStringAsPrecision(sdMath.getAlgarismosSignificativos())}',
                               style: kResultTextStyle,
                             ),
                             Text(
-                              'Desvio Padrao: ${sdMath.getSingleInputStandardDeviation().toStringAsExponential(sdMath.getAlgarismosSignificativos())}',
+                              'Desvio Padrao: ${sdMath.getSingleInputStandardDeviation().toStringAsPrecision(sdMath.getAlgarismosSignificativos())}',
                               style: kResultTextStyle,
                             ),
                             Text(
-                              'Erro: ${sdMath.getAverageError().toStringAsExponential(sdMath.getAlgarismosSignificativos())}',
+                              'Erro: ${sdMath.getAverageError().toStringAsExponential()}',
                               style: kResultTextStyle,
                             ),
                           ],
